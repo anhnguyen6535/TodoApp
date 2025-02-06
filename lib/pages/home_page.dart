@@ -76,6 +76,25 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text("TO DO"),
         elevation: 0,
+        actions: [
+          IconButton(
+            onPressed: (){}, 
+            icon: Icon(Icons.palette),
+          ),
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Colors.orange[800],
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Housechores'
+          ),  
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Personal Tasks'
+          ),  
+        ]
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: createNewTask,

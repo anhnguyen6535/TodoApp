@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+
       theme: ThemeData(
         colorScheme: ColorScheme(
           brightness: Brightness.light, 
@@ -36,6 +36,12 @@ class MyApp extends StatelessWidget {
           foregroundColor: Colors.black,
         )
       ),
+
+      home: HomePage(),
+
+      // routes: {
+      //   '/housechores'
+      // },
     );
   }
 }
