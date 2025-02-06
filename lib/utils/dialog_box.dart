@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:todoapp/utils/customized_button.dart';
 
 class DialogBox extends StatelessWidget {
+  final GlobalKey<FormState> formKey;
   final controller;
   VoidCallback onSave;
   VoidCallback onCancel;
 
   DialogBox({
     super.key,
+    required this.formKey,
     required this.controller,  
     required this.onSave,  
     required this.onCancel,  
@@ -16,18 +18,30 @@ class DialogBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      content: SizedBox(
-        height: 120,
+      content: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            TextField(
-              controller: controller,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: "Add a new task",
+            Form(
+              key: formKey,
+              child: TextFormField(
+                controller: controller,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: "Add a new task",
+                ),
+                validator: (value){
+                  if (value == null || value.trim().isEmpty){
+                    return "Task cannot be empty";
+                  }
+                  return null;
+                }
+              
               ),
             ),
+
+            const SizedBox(height: 16),
+            
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
