@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:todoapp/data/database.dart';
+import 'package:todoapp/utils/task_page.dart';
 
 class HouseChoresPage extends StatelessWidget {
-  const HouseChoresPage({super.key});
+  final AppDatabase db = AppDatabase();
+  HouseChoresPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text("House Chores"),
-      ),
+    return GenericTaskPage(
+      listName: "CHORESLIST", 
+      initialData: [
+        ["Do laundry", false],
+        ["Buy groceries", false],
+      ],
     );
   }
 }

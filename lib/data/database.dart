@@ -4,33 +4,19 @@ class AppDatabase{
   List todoList = [];
   List choresList = [];
   final _mybox = Hive.box('mybox');
-
-  // this function only runs the first time openning this app
-  void createInitialData(){
-    todoList = [
-      ["Make tut", false],
-      ["Do exercise", false],
-      ["Bake", false],
-    ];
-    choresList = [
-      ["Do laundry", false],
-      ["Buy groceries", false],
-    ];
-  }
   
-  void loadData(String listName){
-    if(listName == "personal"){
-      todoList = _mybox.get("TODOLIST");  
-    }else if(listName == "chores"){
-      choresList = _mybox.get("CHORESLIST");  
+  List loadData(String listName, List initialData){
+    // first time opening app
+    if(!_mybox.containsKey(listName)){
+      updateDb(listName, initialData);
+      return List.from(initialData);
+    }
+    else{ 
+      return List.from(_mybox.get(listName)); 
     }
   }
 
-  void updateDb(String listName){
-    if(listName == "personal"){
-      _mybox.put("TODOLIST", todoList);  
-    }else if(listName == "chores"){
-      _mybox.put("CHORESLIST", choresList);  
-    }
+  void updateDb(String listName, List taskList){
+    _mybox.put(listName, taskList);  
   }
 }
