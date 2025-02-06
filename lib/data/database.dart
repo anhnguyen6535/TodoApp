@@ -5,7 +5,7 @@ class TodoDatabase{
   final _mybox = Hive.box('mybox');
   
   // only run the first time openning this app
-  void createInitialData(){
+  void createInitialPersonalTasks(){
     todoList = [
       ["Make tut", false],
       ["Do exercise", false],
@@ -13,11 +13,11 @@ class TodoDatabase{
     ];
   }
 
-  void loadData(){
+  void loadPersonalTasksData(){
     todoList = _mybox.get("TODOLIST");
   }
 
-  void updateDb(){
+  void updatePersonalTasksDb(){
     _mybox.put("TODOLIST", todoList);
   }
 }

@@ -21,11 +21,11 @@ class _PersonalPageState extends State<PersonalPage> {
   void initState() {
     // check if the first time ever open the app
     if(!_myBox.containsKey("TODOLIST")){
-      db.createInitialData();
-      db.updateDb();
+      db.createInitialPersonalTasks();
+      db.updatePersonalTasksDb();
     }else{
       // there ready exist data
-      db.loadData();
+      db.loadPersonalTasksData();
     }
 
     super.initState();
@@ -35,7 +35,7 @@ class _PersonalPageState extends State<PersonalPage> {
     setState(() {
       db.todoList[index][1] = !db.todoList[index][1];
     });
-    db.updateDb();
+    db.updatePersonalTasksDb();
   }
 
   void saveNewTask(){
@@ -45,7 +45,7 @@ class _PersonalPageState extends State<PersonalPage> {
     });
     _controller.clear();
     Navigator.of(context).pop();
-    db.updateDb();
+    db.updatePersonalTasksDb();
   }
 
   void createNewTask(){
@@ -65,7 +65,7 @@ class _PersonalPageState extends State<PersonalPage> {
     setState(() {
       db.todoList.removeAt(index);
     });
-    db.updateDb();
+    db.updatePersonalTasksDb();
     
   }
 
